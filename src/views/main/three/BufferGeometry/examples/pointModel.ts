@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 class PointModel {
   // constructor() {}
-  initPoint = (type: 'point' | 'line' | 'baseMesh') => {
+  initPoint = (type: 'point' | 'line' | 'baseMesh' | 'box') => {
     //1.创建一个空的几何体对象
     const geometry = new THREE.BufferGeometry()
     //2.类型化数组创建顶点数据
@@ -65,6 +65,14 @@ class PointModel {
       const material = new THREE.MeshBasicMaterial({
         color: 0x0000ff, //材质颜色
         side: THREE.FrontSide //默认只有正面可见
+      })
+      model = new THREE.Mesh(geometry, material)
+    } else if (type == 'box') {
+      const geometry = new THREE.BoxGeometry(20, 20, 20)
+      const material = new THREE.MeshBasicMaterial({
+        color: '#eb9e10',
+        transparent: true, //开启透明
+        opacity: 0.5 //设置透明度
       })
       model = new THREE.Mesh(geometry, material)
     }
